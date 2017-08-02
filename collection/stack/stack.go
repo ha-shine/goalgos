@@ -5,67 +5,66 @@ import (
 	"math/rand"
 )
 
+type stackNode struct {
+	Item interface{}
+	Next *stackNode
+}
+
 type Stack struct {
-	Items  []interface{}
-	Size   int
-	Length int
+	head *stackNode
+	Size int
 }
 
 func NewStack() *Stack {
-	stack := &Stack{}
-	stack.Items = make([]interface{}, 5)
-	stack.Size = 5
-	stack.Length = 0
-	return stack
+	return &Stack{head: nil, Size: 0}
 }
 
-func (stack *Stack) resize(size int) {
-	newItems := make([]interface{}, size)
-	for i := 0; i < len(newItems) && i < len(stack.Items); i++ {
-		newItems[i] = stack.Items[i]
-	}
-	stack.Items = newItems
-	stack.Size = size
-}
-
-func (stack *Stack) grow() {
-	stack.resize(stack.Size * 2)
-}
-
-func (stack *Stack) shrink() {
-	stack.resize(stack.Size / 2)
+func (stack *Stack) IsEmpty() bool {
+	return stack.Size == 0
 }
 
 func (stack *Stack) Push(item interface{}) {
-	if stack.Length == stack.Size {
-		stack.grow()
+	node := &stackNode{Item: item, Next: nil}
+	if stack.Size == 0 {
+		stack.head = node
+	} else {
+		node.Next = stack.head
+		stack.head = node
 	}
-	stack.Items[stack.Length] = item
-	stack.Length++
+	stack.Size++
 }
 
 func (stack *Stack) Pop() (interface{}, bool) {
-	if stack.Length != 0 {
-		item := stack.Items[stack.Length-1]
-		stack.Length--
-		if stack.Size/2 >= stack.Length {
-			stack.shrink()
-		}
-		return item, true
+	var item interface{}
+	ok := false
+	if !stack.IsEmpty() {
+		ok = true
+		item = stack.head.Item
+		stack.head = stack.head.Next
+		stack.Size--
 	}
-	return nil, false
+	return item, ok
 }
 
 func main() {
-	r := rand.Perm(50)
+	r, output := rand.Perm(50), make([]int, 50)
 	stack := NewStack()
 	for _, item := range r {
 		stack.Push(item)
 	}
-	fmt.Printf("Size: %v, Length: %v\n%v\n\n", stack.Size, stack.Length, stack.Items)
-	ok := true
+
+	fmt.Printf("Size: %v\n", stack.Size)
+	fmt.Printf("Items : %v\n\n", r)
+
+	var popped interface{}
+	index, ok := 0, true
 	for ok == true {
-		_, ok = stack.Pop()
+		popped, ok = stack.Pop()
+		if ok {
+			output[index] = popped.(int)
+			index++
+		}
 	}
-	fmt.Printf("Size: %v, Length: %v\n%v\n", stack.Size, stack.Length, stack.Items)
+	fmt.Printf("Size: %v\n", stack.Size)
+	fmt.Printf("Items: %v\n", output)
 }
