@@ -9,3 +9,4 @@
 ## Data Structures
 * [Stack](/collection/stack/stack.go)
 * [Queue](/collection/queue/queue.go)
+* [Priority Queue](/collection/pq/pq.go)
