@@ -2,7 +2,7 @@
 `goalgos` is implmentations of various algorithms and data structures to become more familiar with Go
 
 ## Sorting
-* [Merge Sort](/sorting/merge/merge.go)
+* [Merge Sort](/sorting/merge/merge.go) : 0.461s
 * [Quick Sort](/sorting/quick/quick.go) : 0.089s
 * [Heap Sort](/sorting/heap/heap.go) : 0.117s
 

@@ -1,33 +1,26 @@
 package quick
 
-func Sort(strs []string) {
-	if len(strs) > 2 {
-		low, middle, high := 0, len(strs)/2, len(strs)-1
-		if strs[middle] < strs[low] {
-			strs[low], strs[middle] = strs[middle], strs[low]
-		}
-		if strs[high] < strs[low] {
-			strs[high], strs[low] = strs[low], strs[high]
-		}
-		if strs[high] < strs[middle] {
-			strs[high], strs[middle] = strs[middle], strs[high]
-		}
-		i, j := 0, len(strs)-1
-		pivot := strs[j]
-		for {
-			for strs[i] < pivot {
-				i++
-			}
-			for pivot < strs[j] {
-				j--
-			}
-			if i >= j {
-				break
-			}
-			strs[i], strs[j] = strs[j], strs[i]
-		}
+func Sort(values []string) {
+	sort(values, 0, len(values)-1)
+}
 
-		Sort(strs[:i])
-		Sort(strs[i:])
+func sort(values []string, l int, r int) {
+	if l >= r {
+		return
 	}
+
+	pivot := values[l]
+	i := l + 1
+
+	for j := l; j <= r; j++ {
+		if pivot > values[j] {
+			values[i], values[j] = values[j], values[i]
+			i++
+		}
+	}
+
+	values[l], values[i-1] = values[i-1], pivot
+
+	sort(values, l, i-2)
+	sort(values, i, r)
 }
