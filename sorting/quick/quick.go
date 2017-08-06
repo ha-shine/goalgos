@@ -1,44 +1,33 @@
-package main
+package quick
 
-import (
-	"fmt"
-	"math/rand"
-)
-
-func Sort(ints []int) {
-	if len(ints) > 2 {
-		low, middle, high := 0, len(ints)/2, len(ints)-1
-		if ints[middle] < ints[low] {
-			ints[low], ints[middle] = ints[middle], ints[low]
+func Sort(strs []string) {
+	if len(strs) > 2 {
+		low, middle, high := 0, len(strs)/2, len(strs)-1
+		if strs[middle] < strs[low] {
+			strs[low], strs[middle] = strs[middle], strs[low]
 		}
-		if ints[high] < ints[low] {
-			ints[high], ints[low] = ints[low], ints[high]
+		if strs[high] < strs[low] {
+			strs[high], strs[low] = strs[low], strs[high]
 		}
-		if ints[high] < ints[middle] {
-			ints[high], ints[middle] = ints[middle], ints[high]
+		if strs[high] < strs[middle] {
+			strs[high], strs[middle] = strs[middle], strs[high]
 		}
-		i, j := 0, len(ints)-1
-		pivot := ints[j]
+		i, j := 0, len(strs)-1
+		pivot := strs[j]
 		for {
-			for ints[i] < pivot {
+			for strs[i] < pivot {
 				i++
 			}
-			for pivot < ints[j] {
+			for pivot < strs[j] {
 				j--
 			}
 			if i >= j {
 				break
 			}
-			ints[i], ints[j] = ints[j], ints[i]
+			strs[i], strs[j] = strs[j], strs[i]
 		}
 
-		Sort(ints[:i])
-		Sort(ints[i:])
+		Sort(strs[:i])
+		Sort(strs[i:])
 	}
-}
-
-func main() {
-	r := rand.Perm(50)
-	Sort(r)
-	fmt.Println(r)
 }
