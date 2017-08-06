@@ -4,7 +4,7 @@
 ## Sorting
 * [Merge Sort](/sorting/merge/merge.go)
 * [Quick Sort](/sorting/quick/quick.go)
-* [Heap Sort](/sorting/heap/heap.go)
+* [Heap Sort](/sorting/heap/heap.go) : 0.117s
 
 ## Data Structures
 * [Stack](/collection/stack/stack.go)

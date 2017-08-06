@@ -17,7 +17,7 @@ func TestBenchMark(t *testing.T) {
 			st.Put(s, 1)
 		}
 	}
-	util.ReadFile("../tale.txt", consume)
+	util.ReadFile("../../tale.txt", consume)
 	max := st.First
 	for first := st.First; first != nil; first = first.Next {
 		if first.Value.(int) > max.Value.(int) {
