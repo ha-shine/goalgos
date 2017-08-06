@@ -1,31 +1,28 @@
 package seqsearchst
 
 import (
-	"bufio"
 	"fmt"
-	"io"
-	"os"
 	"testing"
+
+	"github.com/ha-shine/goalgos/util"
 )
 
 func TestBenchMark(t *testing.T) {
 	st := NewST()
-	f, _ := os.Open("../tale.txt")
-	reader := bufio.NewReader(f)
-	word, err := reader.ReadString(' ')
-	for err != io.EOF {
-		if st.Get(word) != nil {
-			st.Put(word, st.Get(word).(int)+1)
+	consume := func(s string) {
+		exist := st.Get(s)
+		if exist != nil {
+			st.Put(s, exist.(int)+1)
 		} else {
-			st.Put(word, 1)
+			st.Put(s, 1)
 		}
-		word, err = reader.ReadString(' ')
 	}
+	util.ReadFile("../tale.txt", consume)
 	max := st.First
 	for first := st.First; first != nil; first = first.Next {
 		if first.Value.(int) > max.Value.(int) {
 			max = first
 		}
 	}
-	fmt.Printf("%v : %v", max.Key, max.Value)
+	fmt.Printf("%v : %v\n", max.Key, max.Value)
 }

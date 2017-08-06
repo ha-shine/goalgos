@@ -12,4 +12,4 @@
 * [Priority Queue](/collection/pq/pq.go)
 
 ## Searching
-* [Sequential Search Symbol Table](/searching/seqsearchst/seqsearchst.go) : 53.411s
+* [Sequential Search Symbol Table](/searching/seqsearchst/seqsearchst.go) : 50.121s
