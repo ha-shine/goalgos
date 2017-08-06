@@ -1,4 +1,4 @@
-package main
+package seqsearchst
 
 type Node struct {
 	Key   string
@@ -36,8 +36,4 @@ func (st *SeqSearchST) Put(key string, value interface{}) {
 	}
 	node := NewNode(key, value)
 	node.Next, st.First = st.First, node
-}
-
-func main() {
-
 }
