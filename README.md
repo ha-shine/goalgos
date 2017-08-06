@@ -10,3 +10,6 @@
 * [Stack](/collection/stack/stack.go)
 * [Queue](/collection/queue/queue.go)
 * [Priority Queue](/collection/pq/pq.go)
+
+## Searching
+* [Sequential Search SymbolTable](/searching/seqsearchst/seqsearchst.go)
