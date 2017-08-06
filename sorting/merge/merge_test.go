@@ -13,7 +13,7 @@ func TestBenchmark(t *testing.T) {
 	consume := func(s string) {
 		s = strings.TrimSpace(s)
 		if s != "" {
-			items = append(items, strings.TrimSpace(s))
+			items = append(items, s)
 		}
 	}
 	util.ReadFile("../../tale.txt", consume)
