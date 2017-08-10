@@ -13,3 +13,4 @@
 
 ## Searching
 * [Sequential Search Symbol Table](/searching/seqsearchst/seqsearchst.go) : 50.121s
+* [Binary Search Symbol Table](/searching/binarysearchst/binarysearchst.go) : 0.722s
