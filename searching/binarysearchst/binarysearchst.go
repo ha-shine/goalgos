@@ -73,6 +73,12 @@ func (st BinarySearchST) Floor(key string) string {
 	if i <= 0 {
 		return st.keys[0]
 	}
+	if st.keys[i-1] == key {
+		if i-2 <= 0 {
+			return st.keys[0]
+		}
+		return st.keys[i-2]
+	}
 	return st.keys[i-1]
 }
 

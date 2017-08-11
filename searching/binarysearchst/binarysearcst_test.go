@@ -60,3 +60,11 @@ func TestDeleteFront(t *testing.T) {
 		t.Errorf("Test 2: Delete function is wrong, expected : %v, got : %v\n", initial-1, st.Size)
 	}
 }
+
+func TestDeleteThe(t *testing.T) {
+	st.Delete("the")
+	result := st.Get("the")
+	if result != nil {
+		t.Errorf("Test 3: Delete function is wrong, expected : nil, got : %v\n", result)
+	}
+}
