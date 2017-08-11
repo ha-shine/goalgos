@@ -51,3 +51,22 @@ func (st *BinarySearchST) Put(key string, value interface{}) {
 	st.keys[i], st.values[i] = key, value
 	st.Size++
 }
+
+func (st BinarySearchST) Min() string {
+	return st.keys[0]
+}
+
+func (st BinarySearchST) Max() string {
+	return st.keys[st.Size-1]
+}
+
+func (st BinarySearchST) Ceiling(key string) string {
+	i := st.rank(key)
+	return st.keys[i]
+}
+
+func (st BinarySearchST) Iterate(lo, hi string, consume func(string)) {
+	for i := st.rank(lo); i < st.rank(hi); i++ {
+		consume(st.keys[i])
+	}
+}
