@@ -1,5 +1,7 @@
 package binarysearchst
 
+import "fmt"
+
 type BinarySearchST struct {
 	keys   []string
 	values []interface{}
@@ -63,6 +65,27 @@ func (st BinarySearchST) Max() string {
 func (st BinarySearchST) Ceiling(key string) string {
 	i := st.rank(key)
 	return st.keys[i]
+}
+
+func (st BinarySearchST) Floor(key string) string {
+	i := st.rank(key)
+	fmt.Println(i)
+	if i <= 0 {
+		return st.keys[0]
+	}
+	return st.keys[i-1]
+}
+
+func (st *BinarySearchST) Delete(key string) {
+	i := st.rank(key)
+	if st.keys[i] == key {
+		for index := i; index < st.Size-1; index++ {
+			st.keys[i], st.values[i] = st.keys[i+1], st.values[i+1]
+		}
+		st.keys = st.keys[:st.Size-1]
+		st.values = st.values[:st.Size-1]
+		st.Size--
+	}
 }
 
 func (st BinarySearchST) Iterate(lo, hi string, consume func(string)) {
